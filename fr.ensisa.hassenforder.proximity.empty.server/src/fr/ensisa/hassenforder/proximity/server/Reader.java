@@ -6,6 +6,7 @@ import java.io.InputStream;
 import fr.ensisa.hassenforder.network.BasicAbstractReader;
 import fr.ensisa.hassenforder.network.Protocol;
 import fr.ensisa.hassenforder.proximity.model.Mode;
+import fr.ensisa.hassenforder.proximity.model.Preference;
 
 public class Reader extends BasicAbstractReader {
 
@@ -18,13 +19,18 @@ public class Reader extends BasicAbstractReader {
 		switch (type) {
 		case 0 :
 			break;
-		case Protocol.CONNECT_QUERY :
-			break;
 		}
 	}
 
-	public String connectQuery() {
+	public String getNameQuery() {
 		return this.readString();
 	}
 	
+	public int getIntQuery() {
+		return this.readInt();
+	}
+
+	public boolean getBooleanQuery() {
+		return this.readBoolean();
+	}
 }
