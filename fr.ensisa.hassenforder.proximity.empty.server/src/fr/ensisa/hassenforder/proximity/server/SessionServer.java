@@ -11,7 +11,6 @@ public class SessionServer {
 
 	private Socket connection;
 	private Document document;
-	private String currentUser;
 	
 	public SessionServer (Document document, Socket connection) {
 		this.document = document;
@@ -39,8 +38,7 @@ public class SessionServer {
 
 	private void connectQuery(Reader reader, Writer writer) {
 		// Lecture du nom et connexion
-		currentUser = reader.connectQuery();
-		System.out.println(currentUser);
+		String currentUser = reader.connectQuery();
 		User u = this.document.doConnect(currentUser);
 		
 		// On renvoie la connexion
