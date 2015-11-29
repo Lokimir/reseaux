@@ -11,6 +11,7 @@ public class SessionServer {
 
 	private Socket connection;
 	private Document document;
+	private String currentUser;
 	
 	public SessionServer (Document document, Socket connection) {
 		this.document = document;
@@ -24,7 +25,9 @@ public class SessionServer {
 			reader.receive ();
 			switch (reader.getType ()) {
 			case 0 : return false; // socket closed
-			case 1 : break;
+			case Protocol.CONNECT_QUERY :
+				connectQuery(reader, writer);
+				break;
 			default: return false; // connection jammed
 			}
 			writer.send ();
@@ -32,6 +35,16 @@ public class SessionServer {
 		} catch (IOException e) {
 			return false;
 		}
+	}
+
+	private void connectQuery(Reader reader, Writer writer) {
+		// Lecture du nom et connexion
+		currentUser = reader.connectQuery();
+		System.out.println(currentUser);
+		User u = this.document.doConnect(currentUser);
+		
+		// On renvoie la connexion
+		writer.connectQuery(u);
 	}
 
 }

@@ -18,7 +18,13 @@ public class Reader extends BasicAbstractReader {
 		switch (type) {
 		case 0 :
 			break;
+		case Protocol.CONNECT_QUERY :
+			break;
 		}
+	}
+
+	public String connectQuery() {
+		return this.readString();
 	}
 	
 }
