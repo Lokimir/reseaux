@@ -8,4 +8,6 @@ public interface Protocol {
 	
 	public static final int CONNECT_QUERY = 1;
 
+	public static final int QUERY_OK = 1;
+	public static final int QUERY_ERROR = 0;
 }

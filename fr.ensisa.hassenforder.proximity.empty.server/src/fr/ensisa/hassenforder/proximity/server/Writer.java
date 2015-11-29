@@ -18,6 +18,9 @@ public class Writer extends BasicAbstractWriter {
 
 	public void connectQuery(User u) {
 		if (u != null){
+			// On envoie l'acquittement 
+			this.writeInt(Protocol.QUERY_OK);
+			
 			// On envoie les données de l'utilisateur
 			this.writeInt(u.getX());
 			this.writeInt(u.getY());
@@ -36,6 +39,9 @@ public class Writer extends BasicAbstractWriter {
 				this.writeBoolean(p.isVisibility());
 			}
 		}
+		else
+			this.writeInt(Protocol.QUERY_ERROR);
+			
 	}
 
 }
